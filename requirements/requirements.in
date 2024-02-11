@@ -1,0 +1,13 @@
+asgiref
+build
+click
+colorama
+django
+djangorestframework
+packaging
+pip-tools
+pyproject-hooks
+pytz
+sqlparse
+tzdata
+wheel
