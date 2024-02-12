@@ -11,6 +11,3 @@ class CompanyViewSet(viewsets.ModelViewSet):
 class CompanyMemberViewSet(viewsets.ModelViewSet):
     queryset = CompanyMember.objects.all()
     serializer_class = CompanyMemberSerializer
-
-    def perform_create(self, serializer):
-        ...
