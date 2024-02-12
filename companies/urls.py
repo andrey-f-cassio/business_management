@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import Company
+from .views import CompanyViewSet
 
 urlpatterns = [
-    path('create/', Company.as_view(), name='company-create'),
+    path('create/', CompanyViewSet.as_view({'post': 'create'}), name='company-create'),
 ]
