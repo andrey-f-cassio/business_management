@@ -55,3 +55,21 @@ class CompanyListTestCase(APITestCase):
         companies_user1_ids = {company['id'] for company in response.data}
         expected_ids = set(Company.objects.filter(user=self.user1).values_list('id', flat=True))
         self.assertEqual(companies_user1_ids, expected_ids)
+
+
+class CompanyMemberRegistrationTestCase(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', email='test@example.com', password='testpassword')
+        self.other_user = User.objects.create_user(username='otheruser', email='other@example.com', password='testpassword')
+        self.token = Token.objects.create(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+        self.company = Company.objects.create(user=self.user, cnpj="12345678901234", corporate_name="Test Company", trade_name="Test Trade")
+
+    def test_add_company_member(self):
+        url = reverse('company-members-list')
+        data = {
+            'user_id': self.other_user.id,
+            'company_id': self.company.id
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
