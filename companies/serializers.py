@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Company, CompanyMember
+from .models import Company, CompanyMember, User
 
 
 class CompanySerializer(serializers.ModelSerializer):
@@ -9,6 +9,18 @@ class CompanySerializer(serializers.ModelSerializer):
 
 
 class CompanyMemberSerializer(serializers.ModelSerializer):
+    user_id = serializers.PrimaryKeyRelatedField(
+        write_only=True,
+        queryset=User.objects.all(),
+        source='user'
+    )
+    company_id = serializers.PrimaryKeyRelatedField(
+        write_only=True,
+        queryset=Company.objects.all(),
+        source='company'
+    )
+
     class Meta:
         model = CompanyMember
-        fields = ['id', 'user', 'company', 'date_joined']
+        fields = ['id', 'user_id', 'company_id', 'date_joined']
+
