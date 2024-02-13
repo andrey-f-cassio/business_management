@@ -8,6 +8,7 @@ class Company(models.Model):
     corporate_name = models.CharField(max_length=100)
     trade_name = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(null=True, blank=True)
     status = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
