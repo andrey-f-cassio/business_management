@@ -18,6 +18,6 @@ class CompanyMemberViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        company_id = self.kwargs.get('pk')
+        company_id = self.kwargs.get('company_id')
         company = get_object_or_404(Company, pk=company_id)
         return CompanyMember.objects.filter(company=company)
