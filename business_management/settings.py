@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     "companies.apps.CompaniesConfig",
     "drf_yasg",
-    "django_extensions"
+    "django_extensions",
+    "django_q",
 ]
 
 MIDDLEWARE = [
@@ -83,6 +84,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'OPTIONS': {
+            'timeout': 20,
+        }
     }
 }
 
@@ -133,3 +137,20 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
+
+Q_CLUSTER = {
+    'name': 'DjangoORM',
+    'workers': 4,
+    'timeout': 90,
+    'retry': 120,
+    'queue_limit': 50,
+    'bulk': 10,
+    # 'orm': 'default',
+    'redis': {
+        'host': 'localhost',
+        'port': 6379,
+        'db': 0,
+        'socket_timeout': 5,
+    },
+}
+
