@@ -1,7 +1,17 @@
 import requests
 from django.utils import timezone
+from ratelimit import limits, sleep_and_retry
 
 from .models import Company
+
+ONE_MINUTE = 60
+
+
+@sleep_and_retry
+@limits(calls=10, period=ONE_MINUTE)
+def call_receita_api(cnpj):
+    response = requests.get(f'https://receitaws.com.br/v1/cnpj/{cnpj}')
+    return response
 
 
 def update_company_data():
@@ -10,7 +20,7 @@ def update_company_data():
 
     for company in companies_to_update:
         if not company.last_updated or (current_time - company.last_updated).days > 30:
-            response = requests.get(f'https://receitaws.com.br/v1/cnpj/{company.cnpj}')
+            response = call_receita_api(company.cnpj)
             if response.status_code == 200:
                 data = response.json()
                 company.corporate_name = data.get('nome', company.corporate_name)
