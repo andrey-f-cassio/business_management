@@ -13,10 +13,10 @@ coreschema
 cron-descriptor
 Django
 django-extensions
+django-q
 django-timezone-field
 djangorestframework
 drf-yasg
-flower
 humanize
 idna
 inflection
@@ -33,6 +33,7 @@ python-crontab
 python-dateutil
 pytz
 PyYAML
+ratelimit
 redis
 requests
 setuptools
