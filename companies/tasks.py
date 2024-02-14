@@ -6,6 +6,7 @@ from django.utils.timezone import now
 from datetime import timedelta
 from django_q.tasks import schedule
 from django_q.models import Schedule
+from django.conf import settings
 
 from .models import Company
 
@@ -39,7 +40,7 @@ def create_task_update_company_data_if_not_exists():
     if not Schedule.objects.filter(func='companies.tasks.update_company_data').exists():
         schedule('companies.tasks.update_company_data',
                  schedule_type=Schedule.ONCE,
-                 next_run=now() + timedelta(seconds=10))
+                 next_run=now() + timedelta(seconds=int(settings.TIME_IN_SECONDS_TO_CALL_TASK)))
         print('Task "update_company_data" successfully scheduled to run in 10 seconds.')
     else:
         print('The "update_company_data" task is already scheduled.')
