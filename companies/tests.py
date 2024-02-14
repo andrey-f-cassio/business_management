@@ -3,7 +3,7 @@ from django.urls import reverse
 from rest_framework.test import APITestCase
 from rest_framework import status
 from rest_framework.authtoken.models import Token
-from .models import Company
+from .models import Company, CompanyMember
 
 
 class CompanyCreationTestCase(APITestCase):
@@ -73,3 +73,30 @@ class CompanyMemberRegistrationTestCase(APITestCase):
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+
+class CompanyMembersListTestCase(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', email='testuser@example.com', password='testpassword')
+        self.token = Token.objects.create(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+
+        self.company1 = Company.objects.create(user=self.user, cnpj="12345678901234", corporate_name="Company One",
+                                               trade_name="C1")
+        self.company2 = Company.objects.create(user=self.user, cnpj="98765432109876", corporate_name="Company Two",
+                                               trade_name="C2")
+
+        self.member1 = User.objects.create_user(username='member1', email='member1@example.com', password='password123')
+        self.member2 = User.objects.create_user(username='member2', email='member2@example.com', password='password123')
+
+        CompanyMember.objects.create(user=self.member1, company=self.company1)
+        CompanyMember.objects.create(user=self.member2, company=self.company1)
+        CompanyMember.objects.create(user=self.member2, company=self.company2)
+
+    def test_list_company_members(self):
+        # Supondo que a URL para listar membros utilize o padrão '<int:company_id>/members/'
+        url = reverse('company-members', kwargs={'company_id': self.company1.id})
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 2)  # Espera-se 2 membros para a company1
