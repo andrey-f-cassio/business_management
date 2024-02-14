@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -153,4 +154,6 @@ Q_CLUSTER = {
         'socket_timeout': 5,
     },
 }
+
+TIME_IN_SECONDS_TO_CALL_TASK = config('TIME_IN_SECONDS_TO_CALL_TASK')
 
