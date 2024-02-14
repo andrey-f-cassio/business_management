@@ -11,6 +11,7 @@ click-repl
 colorama
 coreschema
 cron-descriptor
+python-decouple
 Django
 django-extensions
 django-q
