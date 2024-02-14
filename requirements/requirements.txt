@@ -129,6 +129,8 @@ python-dateutil==2.8.2
     #   -r .\requirements\requirements.in
     #   arrow
     #   python-crontab
+python-decouple==3.8
+    # via -r .\requirements\requirements.in
 pytz==2024.1
     # via
     #   -r .\requirements\requirements.in
