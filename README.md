@@ -61,6 +61,7 @@ python manage.py runserver
 
 Agora, você pode acessar o projeto em `http://127.0.0.1:8000/` no seu navegador.
 
-## Contribuindo
-
-Se você deseja contribuir para este projeto, siga as etapas descritas na seção Contribuindo do
+### Usando Docker Compose
+1. Instale o Docker.
+2. dentro da pasta raiz do projeto execute ```docker-compose up --build```
+3. Agora, você pode acessar o projeto em http://127.0.0.1:8000/ no seu navegador.
