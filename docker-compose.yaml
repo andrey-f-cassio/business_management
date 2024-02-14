@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - DJANGO_SETTINGS_MODULE=business_management.settings
+
+
+  qcluster:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python manage.py qcluster
+    depends_on:
+      - django
+    volumes:
+      - .:/app
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
