@@ -39,8 +39,8 @@ def update_company_data():
 def create_task_update_company_data_if_not_exists():
     if not Schedule.objects.filter(func='companies.tasks.update_company_data').exists():
         schedule('companies.tasks.update_company_data',
-                 schedule_type=Schedule.ONCE,
+                 schedule_type='I',
                  next_run=now() + timedelta(seconds=int(settings.TIME_IN_SECONDS_TO_CALL_TASK)))
-        print('Task "update_company_data" successfully scheduled to run in 10 seconds.')
+        print(f'Task "update_company_data" successfully scheduled to run in {settings.TIME_IN_SECONDS_TO_CALL_TASK} seconds.')
     else:
         print('The "update_company_data" task is already scheduled.')
