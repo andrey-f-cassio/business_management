@@ -147,7 +147,7 @@ Q_CLUSTER = {
     'bulk': 10,
     # 'orm': 'default',
     'redis': {
-        'host': 'localhost',
+        'host': 'redis',
         'port': 6379,
         'db': 0,
         'socket_timeout': 5,
