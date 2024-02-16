@@ -1,0 +1,282 @@
+{
+	"info": {
+		"_postman_id": "57ded7c9-da4f-4cde-9f16-a529a8c23eb0",
+		"name": "API Business Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5399138",
+		"_collection_link": "https://gold-comet-4870.postman.co/workspace/My-Workspace~c2837491-58c7-4ebe-8d5d-ca63232b76b7/collection/5399138-57ded7c9-da4f-4cde-9f16-a529a8c23eb0?action=share&source=collection_link&creator=5399138"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:8000/api/accounts/register/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// {\"first_name\": \"Teste\", \"last_name\": \"Usuário\", \"email\": \"teste@exemplo.com\", \"password\": \"senha123\"}\r\n// {\"first_name\": \"andrey\", \"last_name\": \"freitas\", \"email\": \"andrey.freitas@gmail.com\", \"password\": \"senha123\"}\r\n{\"first_name\": \"jackie\", \"last_name\": \"Sparrow\", \"email\": \"jackiesparrow@example.com\", \"password\": \"123456\"}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/accounts/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"accounts",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/accounts/login/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "// {\"email\": \"teste@exemplo.com\", \"password\": \"senha123\"}\r\n// {\"email\": \"andrey.freitas@gmail.com\", \"password\": \"senha123\"}\r\n{\"email\": \"jackiesparrow@example.com\", \"password\": \"123456\"}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/accounts/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"accounts",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/companies/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token dda8047fbb4b8abc6c8e518cae1db0234f40228d"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n           \"user\": 10,\r\n           \"cnpj\": \"88888888\",\r\n           \"corporate_name\": \"TESTE1\",\r\n           \"trade_name\": \"Teste1 consignado\"\r\n         }"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/companies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"companies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/company-members/10",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 35a98d46d4bbc3a0f4ee681f4c5dcc8684787e50"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n           \"user\": 9,\r\n           \"company\": 8\r\n         }"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/company-members/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"company-members",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/companies/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token dda8047fbb4b8abc6c8e518cae1db0234f40228d"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n           \"user\": 9,\r\n           \"cnpj\": \"123123123\",\r\n           \"corporate_name\": \"TESTE\",\r\n           \"trade_name\": \"Teste consignado\"\r\n         }"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/companies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"companies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/company-members/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 35a98d46d4bbc3a0f4ee681f4c5dcc8684787e50"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n           \"user\": 9,\r\n           \"company\": 4\r\n         }"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/company-members/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"company-members",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/company-members/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token dda8047fbb4b8abc6c8e518cae1db0234f40228d"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"user_id\": 9, \"company_id\": 3}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/company-members/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"company-members",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/company-members/4",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token dda8047fbb4b8abc6c8e518cae1db0234f40228d",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/company-members/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"company-members",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
